@@ -50,6 +50,7 @@ func main() {
 	//Add (0,0) to the current selection.
 	fullGrid[0][0].discovered = true
 	currentSelection = append(currentSelection, fullGrid[0][0])
+	currentSelection = append(currentSelection, findNewSelection(currentSelection, fullGrid)...)
 
 	reader := bufio.NewReader(os.Stdin)
 
