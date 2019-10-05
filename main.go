@@ -2,9 +2,9 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"github.com/gookit/color"
-	"log"
 	"math/rand"
 	"os"
 	"os/exec"
@@ -26,16 +26,11 @@ func main() {
 	initConsoleWipe()
 
 	// Get width and height from the command line, or default to 5x10.
-	height, err := strconv.Atoi(os.Args[1])
-	if err != nil {
-		height = 5
-		log.Fatal(err)
-	}
-	width, err := strconv.Atoi(os.Args[2])
-	if err != nil {
-		width = 10
-		log.Fatal(err)
-	}
+	var height int
+	var width int
+	flag.IntVar(&height, "h", 5, "specify the height of the flood, defaults to 5")
+	flag.IntVar(&width, "w", 10, "specify the width of the flood, defaults to 10")
+	flag.Parse()
 
 	//Setup a grid and the (empty) current selection.
 	fullGrid := make([][]Cell, height)
